@@ -18,7 +18,9 @@ jobs:
             environment: production
           - os: windows-latest
             version: 16
-    runs-on: ubuntue-latest
+          - os: ubuntu-latest
+            version: 16
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run a multi-line script
