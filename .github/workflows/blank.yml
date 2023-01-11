@@ -17,12 +17,25 @@ jobs:
           TEST=$(cat <<-EOF
             [
               {
-                "environment": "prod"
-              }
+                "environment": "prod",
+                "foo": "foo"
+              },
+              {
+                "environment": "prod",
+                "foo": "bar"
+              },
+              {
+                "environment": "dev",
+                "foo": "bar"
+              },
+              {
+                "environment": "stage",
+                "foo": "bar"
+              },
             ]
           EOF
           )
-          TEST=$(echo $TEST | jq -r tostring)
+          TEST=$(echo $TEST | jq -r tostring '.[] | select(.environment=="prod")')
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
@@ -39,4 +52,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo ${{ matrix.foo.environment }}
-          echo ${{ matrix.foo.hello }}
+          echo ${{ matrix.foo.foo }}
