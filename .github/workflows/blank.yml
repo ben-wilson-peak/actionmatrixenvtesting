@@ -18,13 +18,19 @@ jobs:
     strategy:
       matrix:
         bar:
-          - os: macos-latest
-            version: 12
-            environment: prod
-          - os: windows-latest
-            version: 16
-          - os: ubuntu-latest
-            version: 16
+          - environment: prod
+            hello: world
+          - environment: prod
+            hello: bar
+          - environment: dev
+            hello: bar
+          - environment: stage
+            hello: bar
+        exclude:
+          - environment: prod
+          - environment: dev
+          - environment: stage
+          
 
     environment: ${{ matrix.environment }}
     runs-on: ubuntu-latest
