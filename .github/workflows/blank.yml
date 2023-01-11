@@ -35,7 +35,7 @@ jobs:
             ]
           EOF
           )
-          TEST=$(echo $TEST | jq -r tostring '.[] | select(.environment=="prod")')
+          TEST=$(echo $TEST | jq -r '.[] | select(.environment=="prod") | tostring')
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
