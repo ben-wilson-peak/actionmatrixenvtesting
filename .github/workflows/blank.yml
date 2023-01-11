@@ -15,9 +15,11 @@ jobs:
         id: foo
         run: |
           TEST=$(cat <<-EOF
-            {
-              "environment": "prod"
-            }
+            [
+              {
+                "environment": "prod"
+              }
+            ]
           EOF
           )
           TEST=$(echo $TEST | jq -r tostring)
