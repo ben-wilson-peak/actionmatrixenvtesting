@@ -15,13 +15,13 @@ jobs:
         id: foo
         run: |
           echo "hello world"
-          echo "test={\"foo\": [{\"environment\": \"prod\"}]}" >> $GITHUB_OUTPUT
+          echo "test=[{\"environment\": \"prod\"}]" >> $GITHUB_OUTPUT
   build:
     needs:
       - foo
     strategy:
       matrix:
-        ${{ include }}: ${{ fromJson(needs.foo.outputs.built_matrix) }}
+        foo: ${{ fromJson(needs.foo.outputs.built_matrix) }}
           
 
 #     environment: ${{ matrix.environment }}
