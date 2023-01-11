@@ -24,7 +24,7 @@ jobs:
         foo: ${{ fromJson(needs.foo.outputs.built_matrix) }}
           
 
-#     environment: ${{ matrix.environment }}
+    environment: ${{ matrix.environment }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
