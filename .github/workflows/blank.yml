@@ -6,7 +6,15 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 jobs:
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello world
+        run: |
+          echo "hello world"
   build:
+    needs:
+      - foo
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
