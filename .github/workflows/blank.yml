@@ -27,9 +27,9 @@ jobs:
           - environment: stage
             hello: bar
         exclude:
-          - environment: prod
-          - environment: dev
-          - environment: stage
+          - bar: {environment: prod}
+          - bar: {environment: dev}
+          - bar: {environment: stage}
           
 
     environment: ${{ matrix.environment }}
