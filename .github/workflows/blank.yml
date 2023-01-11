@@ -20,7 +20,7 @@ jobs:
             }
           EOF
           )
-          TEST=$(${TEST} | jq -r tostring)
+          TEST=$(echo $TEST | jq -r tostring)
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
