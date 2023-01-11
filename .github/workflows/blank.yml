@@ -30,6 +30,8 @@ jobs:
           - bar: {environment: prod}
           - bar: {environment: dev}
           - bar: {environment: stage}
+        include:
+          - bar: {environment: prod}
           
 
 #     environment: ${{ matrix.environment }}
