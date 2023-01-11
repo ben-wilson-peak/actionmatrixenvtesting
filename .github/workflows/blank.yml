@@ -19,7 +19,7 @@ jobs:
               "environment": "prod"
             }
           EOF
-          )
+          | jq -r tostring)
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
