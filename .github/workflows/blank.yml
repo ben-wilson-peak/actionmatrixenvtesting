@@ -26,18 +26,17 @@ jobs:
             hello: bar
           - environment: stage
             hello: bar
-        exclude:
-          - bar: {environment: prod}
-          - bar: {environment: dev}
-          - bar: {environment: stage}
+#         exclude:
+#           - bar: {environment: prod}
+#           - bar: {environment: dev}
+#           - bar: {environment: stage}
           
 
-    environment: ${{ matrix.environment }}
+#     environment: ${{ matrix.environment }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run a multi-line script
         run: |
-          echo ${{ matrix.os }}
-          echo ${{ matrix.version }}
           echo ${{ matrix.environment }}
+          echo ${{ matrix.hello }}
