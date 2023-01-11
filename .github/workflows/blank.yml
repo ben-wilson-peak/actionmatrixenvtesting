@@ -14,8 +14,13 @@ jobs:
       - name: Hello world
         id: foo
         run: |
-          echo "hello world"
-          echo "test=[{\"environment\": \"prod\"}]" >> $GITHUB_OUTPUT
+          TEST=$(cat <<-EOF
+            {
+              "environment": "prod"
+            }
+          EOF
+          )
+          echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
       - foo
