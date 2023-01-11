@@ -17,10 +17,7 @@ jobs:
       - foo
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
-        version: [12, 14, 16]
-        environment: [dev, prod, stage]
-        exclude:
+        bar:
           - os: macos-latest
             version: 12
             environment: prod
@@ -28,6 +25,7 @@ jobs:
             version: 16
           - os: ubuntu-latest
             version: 16
+
     environment: ${{ matrix.environment }}
     runs-on: ubuntu-latest
     steps:
