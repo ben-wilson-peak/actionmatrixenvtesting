@@ -26,8 +26,8 @@ jobs:
             hello: bar
           - environment: stage
             hello: bar
-#         exclude:
-#           - bar: {environment: prod}
+          exclude:
+           - bar: {environment: prod}
 #           - bar: {environment: dev}
 #           - bar: {environment: stage}
           
