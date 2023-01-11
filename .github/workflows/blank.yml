@@ -8,30 +8,20 @@ on:
 jobs:
   foo:
     runs-on: ubuntu-latest
+    outputs:
+      built_matrix: ${{ steps.foo.outputs.test }}
     steps:
       - name: Hello world
+        id: foo
         run: |
           echo "hello world"
+          echo "test={\"foo\": [{\"environment\": \"prod\"}]}" >> $GITHUB_OUTPUT
   build:
     needs:
       - foo
     strategy:
       matrix:
-        bar:
-          - environment: prod
-            hello: world
-          - environment: prod
-            hello: bar
-          - environment: dev
-            hello: bar
-          - environment: stage
-            hello: bar
-        exclude:
-          - bar: {environment: prod}
-          - bar: {environment: dev}
-          - bar: {environment: stage}
-        include:
-          - bar: {environment: prod}
+        ${{ include }}: ${{ fromJson(needs.foo.outputs.built_matrix) }}
           
 
 #     environment: ${{ matrix.environment }}
