@@ -35,7 +35,7 @@ jobs:
             ]
           EOF
           )
-          TEST=$(echo $TEST | jq -c '[.[] | select(.environment=="dev")]')
+          TEST=$(echo $TEST | jq -c '[.[] | select(.environment=="prod")]')
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
