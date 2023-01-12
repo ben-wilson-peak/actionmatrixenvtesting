@@ -35,7 +35,7 @@ jobs:
             ]
           EOF
           )
-          TEST=$(echo $TEST | jq -c '[.[] | select(.environment=="prod")] | tostring')
+          TEST=$(echo $TEST | jq -c '{ env: [.[] | select(.environment=="prod")] } | tostring')
           echo "test=${TEST}" >> $GITHUB_OUTPUT
   build:
     needs:
@@ -51,5 +51,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run a multi-line script
         run: |
-          echo ${{ matrix.foo.environment }}
-          echo ${{ matrix.foo.foo }}
+          echo ${{ matrix.env.environment }}
+          echo ${{ matrix.env.foo }}
